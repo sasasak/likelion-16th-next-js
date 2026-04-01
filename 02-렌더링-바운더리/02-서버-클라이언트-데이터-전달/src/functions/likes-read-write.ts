@@ -8,6 +8,7 @@ import fs from 'node:fs/promises'
 import process from 'node:process'
 import path from 'node:path'
 import { isErrorObject } from '@/utils'
+import { revalidatePath } from 'next/cache'
 
 const dataPath = path.join(process.cwd(), 'src/data/likes.json')
 console.log('likes.json 데이터 경로:', dataPath)
@@ -29,9 +30,10 @@ export async function writeLikes(likeCount: number) {
 
   try {
     // 클라이언트에서 전달된 데이터 값 -> JSON 문자화(stringify)
-    const jsonString = JSON.stringify({ count: likeCount })
+    const jsonString = JSON.stringify({ count: likeCount }, null, 2)
     // JSON 문자열을 fs.writeFile() API(함수) 서버의 likes.json 파일 쓰기
     await fs.writeFile(dataPath, jsonString, { encoding: 'utf-8' })
+    revalidatePath('/')
     return { success: true }
   } catch(error) {
     if (isErrorObject(error)) console.error(error.message)
