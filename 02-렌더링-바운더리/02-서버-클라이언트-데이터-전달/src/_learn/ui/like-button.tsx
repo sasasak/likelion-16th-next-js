@@ -46,7 +46,8 @@ export default function LikeButton({ initialLikes }: Props) {
         'rounded-full border border-rose-200',
         'bg-rose-50 px-6 py-2 text-rose-600',
         'transition-all hover:bg-rose-100',
-        isPending && 'cursor-not-allowed opacity-60 grayscale-100 active:scale-100',
+        isPending &&
+          'cursor-not-allowed opacity-60 grayscale-100 active:scale-100',
       )}
       onClick={handleLike}
     >
