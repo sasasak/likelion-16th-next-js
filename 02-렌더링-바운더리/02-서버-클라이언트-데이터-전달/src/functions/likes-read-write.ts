@@ -1,6 +1,6 @@
 // 서버 지시어를 추가한 파일의 모든 함수는 "서버 함수"
 // 참고: https://shorturl.at/WySaA
-'use server'
+'use server' 
 
 import fs from 'node:fs/promises'
 import process from 'node:process'
@@ -30,18 +30,20 @@ export async function readLikes() {
  * [서버 함수] 새로운 좋아요 숫자를 파일에 저장합니다.
  */
 export async function writeLikes(likeCount: number) {
+
   try {
+    
     // 저장할 객체를 가독성 좋은 JSON 문자열로 변환합니다.
     const jsonString = JSON.stringify({ count: likeCount }, null, 2)
-
+    
     // 서버 파일 시스템에 데이터를 기록합니다.
     await fs.writeFile(dataPath, jsonString, { encoding: 'utf-8' })
-
+    
     // [ISR / 주문형 재검증(On-demand Revalidation)]
-    // 데이터가 변경되었으므로 해당 경로('/')의 캐시를 갱신하여 최신 화면을 보여줍니다.
+    // 데이터가 변경되었으므로 해당 경로('/')의 캐시를 갱신하여 최신 화면을 보여줍니다. 
     revalidatePath('/')
     return { success: true }
-  } catch (error) {
+  } catch(error) {
     // 에러 발생 시 상세 내용을 콘솔에 기록하고 실패 상태를 반환합니다.
     if (isErrorObject(error)) console.error(error.message)
     else console.error('[에러 발생]', String(error))

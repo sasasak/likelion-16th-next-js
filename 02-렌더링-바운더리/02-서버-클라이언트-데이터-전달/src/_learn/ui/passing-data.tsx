@@ -11,7 +11,7 @@ import LikeButton from './like-button' // 클라이언트 컴포넌트
 // 8. 서버 컴포넌트 - 렌더링 (SERVER) -> 클라이언트 컴포넌트에 props 전달
 // 9. 클라이언트 컴포넌트 - 렌더링 (SERVER) -> HTML 생성, 전달받은 props를 토대로 JS 청크 생성
 // 10. JS 청크 - 전송 (BROWSER) -> 브라우저 실행 (Hydration, 수화)
-// 11. 서버 컴포넌트로부터 전달된 데이터 값을 토대로 React에 의해 메모리 상에서 관리
+// 11. 서버 컴포넌트로부터 전달된 데이터 값으로 탣로 React에 의해 메모리 상에서 관리
 
 export default async function PassingData() {
   // 서버 컴포넌트 (비동기 함수 사용 가능)
@@ -19,7 +19,7 @@ export default async function PassingData() {
   // 서버 함수 readLikes()를 실행해
   // 결과 값을 클라이언트 컴포넌트에 전달
   const currentLikes = await readLikes()
-
+  
   // 서버에서 렌더링된 날짜 정보
   const renderedTime = new Date().toISOString()
 
