@@ -1,15 +1,16 @@
-import { notFound } from 'next/navigation'
-import { Book, books } from '../data'
+import { notFound } from "next/navigation"
+import { Book, books } from "../_resources/data"
 
 interface Props {
   params: Promise<{ title: Book['title'] }>
 }
 
 export default async function BookDetailPage({ params }: Props) {
+
   const title = (await params).title
   console.log(title) // 인코딩(encoding)된 도서 제목
-
-  const decodedTitle = decodeURIComponent(title)
+  
+  const decodedTitle = decodeURIComponent(title) 
   console.log(decodedTitle) // 디코딩(decoding)된 도서 제목
 
   // 제목으로 도서 찾기
