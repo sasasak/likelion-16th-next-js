@@ -1,4 +1,4 @@
-export default function LoginPage() {
+export default function Login() {
   return (
     <form>
       <h2>로그인</h2>
